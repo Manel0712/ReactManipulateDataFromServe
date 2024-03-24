@@ -1,5 +1,7 @@
+import { usePersons } from "../hooks";
 export const PersonForm = ({ newName, setNewName, newNumber, handleNewNumber, persons, setPersons }) => {
-
+    const { handleUpdatePerson } = usePersons();
+    const { createUser } = usePersons();
     const addNewPerson = (event) => {
 		event.preventDefault();
 		if (!persons.some(person => (person.name === newName))) {
@@ -8,27 +10,13 @@ export const PersonForm = ({ newName, setNewName, newNumber, handleNewNumber, pe
 				name: newName,
 				number: newNumber
 			}
+            createUser(newPerson);
 			setPersons([...persons, newPerson])
-            fetch('http://localhost:3001/persons', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ 
-                    id: Date.now(),
-                    name: newName,
-                    number: newNumber
-                })
-            })
-                .then(response => response.json())
-                .then(data => {
-                    console.log(data)
-                })
-                .catch(error => {
-                    console.log(error)
-                });
 		} else {
-			alert(`${newName} is already added to the phonebook`)
+            const existingUser = persons.find(
+              (person) => person.name === newName
+            );
+            handleUpdatePerson(existingUser.id, newNumber,existingUser.name);
 		}
 	};
 
