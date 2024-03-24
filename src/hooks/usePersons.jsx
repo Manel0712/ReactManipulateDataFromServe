@@ -38,7 +38,7 @@ export const usePersons = () => {
 
   const handleUpdatePerson = (id, newPhoneNumber, name) => {
     const confirmed = window.confirm(
-      `El usuario ${name} ya está en la agenda telefónica. ¿Desea reemplazar su número existente?`
+      `User ${name} is already in the phone book. Do you want to replace your existing number?`
     );
     if (confirmed) {
           personsService.numberEdit(id, newPhoneNumber, name);
