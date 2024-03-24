@@ -1,7 +1,7 @@
 import { usePersons } from "../hooks";
 export const PersonForm = ({ newName, setNewName, newNumber, handleNewNumber, persons, setPersons }) => {
-    const { handleUpdatePerson, error } = usePersons();
-    const { createUser, errorUser } = usePersons();
+    const { handleUpdatePerson } = usePersons();
+    const { createUser } = usePersons();
     const addNewPerson = (event) => {
 		event.preventDefault();
 		if (!persons.some(person => (person.name === newName))) {

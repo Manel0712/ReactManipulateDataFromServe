@@ -1,6 +1,6 @@
 import { usePersons } from "../hooks"
 export const DeleteButton = ({id}) => {
-	const { handleDeletePerson, error } = usePersons();
+	const { handleDeletePerson } = usePersons();
       const handleDelete = () => {
         handleDeletePerson(id);
       };
